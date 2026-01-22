@@ -1,0 +1,17 @@
+[
+  {
+    "message": "Free shipping on orders over $50!",
+    "background": "green",
+    "color": "white"
+  },
+  {
+    "message": "🚚 Free shipping on orders over $50!",
+    "background": "green",
+    "color": "white"
+  },
+  {
+    "message": "🎉 New tents just arrived in stock!",
+    "background": "navy",
+    "color": "white"
+  }
+]

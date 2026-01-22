@@ -12,5 +12,5 @@ const productList = new ProductList("Tents", dataSource, element);
 
 productList.init();
 
-const alert = new Alert("./json/alerts.json");
+const alert = new Alert("public/json/alerts.json");
 alert.loadAndDisplayAlerts();

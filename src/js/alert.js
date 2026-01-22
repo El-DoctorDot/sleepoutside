@@ -2,7 +2,6 @@
 export default class Alert {
     constructor(alertJsonPath, rotationInterval = 5000) {
         this.alertJsonPath = alertJsonPath;
-        this.alertContainer = document.querySelector(".alert-banner");
         this.rotationInterval = rotationInterval;
         this.alerts = [];
         this.currentIndex = 0;

@@ -99,6 +99,19 @@ p {
   color: var(--tertiary-color);
 }
 
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-top: 2px solid var(--primary-color);
+  text-align: right;
+  font-size: var(--large-font);
+  font-weight: bold;
+}
+
 button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);

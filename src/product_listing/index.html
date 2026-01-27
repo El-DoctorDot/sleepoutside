@@ -13,6 +13,21 @@
     <main class="divider">
       <section class="products">
         <h2>Top Products: <span class="title highlight"></span></h2>
+        
+        <div class="products-controls">
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search products..." class="search-box">
+            <span class="search-icon">🔍</span>
+          </div>
+          <select id="sort-select" class="sort-dropdown">
+            <option value="">Sort by...</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+        
         <ul class="product-list"></ul>
       </section>
     </main>

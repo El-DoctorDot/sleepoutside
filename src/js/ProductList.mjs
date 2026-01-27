@@ -20,18 +20,73 @@ export default class ProductList {
         this.category = category;
         this.dataSource = dataSource;
         this.listElement = listElement;
+        this.allProducts = [];
+        this.filteredProducts = [];
     }
 
     async init() {
-        const list = await this.dataSource.getData(this.category);
-        this.renderList(list);
+        this.allProducts = await this.dataSource.getData(this.category);
+        this.filteredProducts = [...this.allProducts];
+        this.renderList(this.filteredProducts);
         document.querySelector(".title").textContent = this.category;
+        
+        // Setup search and sort event listeners
+        this.setupSearch();
+        this.setupSort();
+    }
+
+    setupSearch() {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.filterAndRender(e.target.value);
+            });
+        }
+    }
+
+    setupSort() {
+        const sortSelect = document.getElementById('sort-select');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                this.sortAndRender(e.target.value);
+            });
+        }
+    }
+
+    filterAndRender(searchTerm) {
+        const term = searchTerm.toLowerCase();
+        this.filteredProducts = this.allProducts.filter(product => {
+            const name = product.Name.toLowerCase();
+            const brand = product.Brand.Name.toLowerCase();
+            return name.includes(term) || brand.includes(term);
+        });
+        this.renderList(this.filteredProducts);
+    }
+
+    sortAndRender(sortOption) {
+        const sorted = [...this.filteredProducts];
+        
+        switch(sortOption) {
+            case 'name-asc':
+                sorted.sort((a, b) => a.Name.localeCompare(b.Name));
+                break;
+            case 'name-desc':
+                sorted.sort((a, b) => b.Name.localeCompare(a.Name));
+                break;
+            case 'price-asc':
+                sorted.sort((a, b) => a.FinalPrice - b.FinalPrice);
+                break;
+            case 'price-desc':
+                sorted.sort((a, b) => b.FinalPrice - a.FinalPrice);
+                break;
+        }
+        
+        this.filteredProducts = sorted;
+        this.renderList(this.filteredProducts);
     }
 
     renderList(list) {
-
         renderListWithTemplate(productCardTemplate, this.listElement, list);
-
     }
 
 }

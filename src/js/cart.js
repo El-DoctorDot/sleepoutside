@@ -21,7 +21,7 @@ function renderCartTotal(cartItems) {
   const cartTotalElement = document.querySelector('.cart-total');
 
   const total = cartItems.reduce(
-    (sum, item) => sum + item.FinalPrice * item.quantity, 0);
+    (sum, item) => sum + item.FinalPrice * (item.quantity || 1));
 
   cartTotalElement.innerHTML = `Total: $${total.toFixed(2)}`;
   cartFooter.classList.remove('hide');
@@ -43,7 +43,7 @@ function cartItemTemplate(item) {
       <input 
         type="number"
         min="1"
-        value="${item.quantity}"
+        value="${item.quantity || 1}"
         data-id="${item.Id}"
         class="cart-qty"
       />

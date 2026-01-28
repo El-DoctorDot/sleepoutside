@@ -22,9 +22,25 @@ export default class ProductDetails {
 
     addProductToCart() {
         const cartItems = getLocalStorage("so-cart") || [];
-        cartItems.push(this.product);
+
+
+        const item = cartItems.find((i) => i.Id === this.product.Id);
+
+        if (item) {
+
+            item.quantity += 1;
+        } else {
+
+            const productToAdd = {
+                ...this.product,
+                quantity: 1
+            };
+            cartItems.push(productToAdd);
+        }
+
         setLocalStorage("so-cart", cartItems);
     }
+
 
     renderProductDetails() {
         productDetailsTemplate(this.product);
@@ -50,7 +66,7 @@ function productDetailsTemplate(product) {
 
     document.getElementById("addToCart").dataset.id = product.Id;
 
-    const originalPriceEl = document.getElementById("originalPrice"); 
+    const originalPriceEl = document.getElementById("originalPrice");
     const priceEl = document.getElementById("productPrice");
     const discountBadgeEl = document.getElementById("discountBadge");
 

@@ -53,14 +53,18 @@ export default class CheckoutProcess {
         itemNumElement.innerText = this.list.length;
         // calculate the total of all the items in the cart
         const amounts = this.list.map((item) => item.FinalPrice);
-        this.itemTotal = amounts.reduce((sum, item) => sum + item);
+        this.itemTotal = amounts.reduce((sum, item) => sum + item, 0);
         summaryElement.innerText = `$${this.itemTotal}`;;
     }
 
     calculateOrderTotal() {
         // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
         this.tax = (this.itemTotal * .06);
-        this.shipping = 10 + (this.list.length - 1) * 2;
+        this.shipping =
+            this.list.length > 0
+                ? 10 + (this.list.length - 1) * 2
+                : 0;
+
         this.orderTotal = (
             parseFloat(this.itemTotal) +
             parseFloat(this.tax) +
@@ -86,8 +90,8 @@ export default class CheckoutProcess {
         const order = formDataToJSON(formElement);
 
         order.orderDate = new Date().toISOString();
-        order.orderTotal = this.orderTotal;
-        order.tax = this.tax;
+        order.orderTotal = this.orderTotal.toFixed(2);
+        order.tax = this.tax.toFixed(2);
         order.shipping = this.shipping;
         order.items = packageItems(this.list);
         //console.log(order);

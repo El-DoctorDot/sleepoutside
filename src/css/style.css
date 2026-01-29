@@ -112,15 +112,18 @@ p {
   font-weight: bold;
 }
 
-button {
-  padding: 0.5em 2em;
-  background-color: var(--secondary-color);
-  color: white;
-  margin: auto;
-  display: block;
-  border: 0;
-  font-size: var(--large-font);
+.checkout-btn {
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.checkout-btn:hover {
+  border-color: #888;
 }
 
 .divider {
@@ -362,4 +365,102 @@ footer {
   outline: none;
   border-color: var(--tertiary-color);
   box-shadow: 0 0 4px rgba(138, 71, 12, 0.3);
+}
+/* End Product Controls */
+
+/* Checkout Page Styles */
+.checkout {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.checkout-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+/* Styles for fieldsets in the checkout form */
+.checkout-form fieldset {
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 6px;
+}
+
+.checkout-form legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #444;
+}
+/* Styles for labels and inputs in the checkout form */
+.checkout-form label {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.checkout-form input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.checkout-form input:focus {
+  outline: none;
+  border-color: #888;
+}
+
+/* Grid layout for name, address, and payment sections */
+
+.checkout__name,
+.checkout__address,
+.checkout__payment {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.checkout__address label[for="street"],
+.checkout__address input#street,
+.checkout__address label[for="city"],
+.checkout__address input#city {
+  grid-column: 1 / -1;
+}
+
+/* Checkout Summary Styles */
+
+.checkout-summary {
+  background-color: #f9f9f9;
+}
+
+.order__summary {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: 0.5rem;
+}
+
+.order__summary div:nth-child(odd) {
+  font-weight: 500;
+}
+
+#orderTotal {
+  font-weight: bold;
+}
+
+/* Checkout Submit Button Styles */
+
+#checkoutSubmit {
+  align-self: flex-end;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+#checkoutSubmit:hover {
+  background-color: #000;
 }

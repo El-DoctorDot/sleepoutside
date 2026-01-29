@@ -31,7 +31,7 @@ function renderCartTotal(cartItems) {
   const cartTotalElement = document.querySelector('.cart-total');
 
   if (!cartItems || cartItems.length === 0) {
-    cartTotalElement.textContent = "Total: $0.00";
+    cartTotalElement.textContent = 'Total: $0.00';
     cartFooter.classList.add('hide');
     return;
   }
@@ -44,7 +44,6 @@ function renderCartTotal(cartItems) {
   cartTotalElement.textContent = `Total: $${total.toFixed(2)}`;
   cartFooter.classList.remove('hide');
 }
-
 
 function cartItemTemplate(item) {
   return `

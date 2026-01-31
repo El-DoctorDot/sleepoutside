@@ -33,7 +33,11 @@ export default class ProductDetails {
 
             const productToAdd = {
                 ...this.product,
-                quantity: 1
+                quantity: 1,
+                Image: new URL(
+                    this.product.Images.PrimaryLarge,
+                    window.location.origin
+                ).href
             };
             cartItems.push(productToAdd);
         }

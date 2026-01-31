@@ -6,6 +6,7 @@ function renderCartContents() {
 
   if (cartItems.length === 0) {
     productList.innerHTML = '<p>Your cart is empty.</p>';
+    renderCartTotal([]); // Update total to $0.00
     return;
   }
 
@@ -14,6 +15,7 @@ function renderCartContents() {
 
   renderCartTotal(cartItems);
   addQuantityListeners();
+  addRemoveItemListener(); // Add this line to set up the remove item listener
 }
 
 //function renderCartTotal(cartItems) {
@@ -48,6 +50,12 @@ function renderCartTotal(cartItems) {
 function cartItemTemplate(item) {
   return `
   <li class="cart-card divider">
+    <button 
+      class="remove-item"
+      data-id="${item.Id}" 
+      aria-label="Remove item"
+    >❌</button> 
+
     <a href="#" class="cart-card__image">
       <img src="${item.Image}" alt="${item.Name}" />
     </a>
@@ -93,3 +101,26 @@ function updateCartQuantity(id, quantity) {
 }
 
 renderCartContents();
+
+function addRemoveItemListener() {
+  // New function to add event listener for removing items
+  const productList = document.querySelector('.product-list');
+
+  productList.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-item')) {
+      const id = e.target.dataset.id;
+      removeItemFromCart(id);
+    }
+  });
+}
+
+function removeItemFromCart(id) {
+  // New function to remove item from cart
+  let cartItems = getLocalStorage('so-cart') || [];
+
+  cartItems = cartItems.filter((item) => item.Id !== id);
+
+  localStorage.setItem('so-cart', JSON.stringify(cartItems));
+
+  renderCartContents();
+}

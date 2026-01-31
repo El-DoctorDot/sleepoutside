@@ -508,3 +508,21 @@ footer {
 #addToCart:active {
   transform: scale(0.97);
 }
+/* End Add to Cart button styles */
+
+.alert {
+  background-color: #f8d7da;
+  color: #842029;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #f5c2c7;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-alert {
+  cursor: pointer;
+  font-weight: bold;
+}

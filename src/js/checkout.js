@@ -14,5 +14,11 @@ document
 document.querySelector('#checkoutSubmit').addEventListener('click', (e) => {
   e.preventDefault();
 
-  order.checkout();
+  const myForm = document.forms[0];
+  const isValid = myForm.checkValidity();
+  myForm.reportValidity();
+
+  if (isValid) {
+    order.checkout();
+  }
 });
